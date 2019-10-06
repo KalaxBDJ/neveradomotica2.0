@@ -16,7 +16,7 @@ app.get('/api/temperature/:temperatureId',(req,res)=>{
 
 app.post('/api/temperature',(req,res)=>{
     console.log(req.body)
-    res.status(404).send({message:'La temperatura se ha subido con exito'})
+    res.status(200).send({message:'La temperatura se ha subido con exito'})
 })
 
 app.put('/api/temperature/:temperatureId',(req,res)=>{
