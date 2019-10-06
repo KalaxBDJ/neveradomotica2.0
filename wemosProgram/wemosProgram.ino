@@ -42,9 +42,9 @@ void loop() {
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
     HTTPClient http;
-    String datos_a_enviar = "TESTEANDO";
+    String datos_a_enviar = "{temperatura:50}";
 
-    http.begin("https://notcompleteapirest01.herokuapp.com/api/temperature");        //Indicamos el destino
+    http.begin("http://192.168.1.7:3001/api/temperature");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     //http.addHeader("Content-Type", "text/plain");
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
