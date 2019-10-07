@@ -15,7 +15,7 @@
 
 const char* ssid = "KALAX_RED";
 const char* password =  "164Px6/4";
-
+float temperatura = 0;
 void setup() {
   delay(10);
   Serial.begin(115200);
@@ -38,8 +38,9 @@ void loop() {
 
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
+    temperatura = (3.3 * analogRead(0)*100)/1024;
     HTTPClient http;
-    String datos_a_enviar = "50";
+    String datos_a_enviar = String(temperatura);
 
     http.begin("http://192.168.137.1:3001/api/temperature");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
