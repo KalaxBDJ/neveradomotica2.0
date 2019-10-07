@@ -16,9 +16,6 @@
 const char* ssid = "UNE_3D00";
 const char* password =  "2521410C8550";
 
-String user = "ioticos";
-String pass = "12345";
-
 void setup() {
   delay(10);
   Serial.begin(115200);
