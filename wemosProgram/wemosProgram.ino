@@ -17,7 +17,7 @@
 const char* ssid = "UNE_3D00";
 const char* password =  "2521410C8550";
 float temperatura = 0;
-String category="loquesea";
+String category="temperatura";
 
 void setup() {
   delay(10);
@@ -48,7 +48,7 @@ void loop() {
     HTTPClient http;
     String datos_a_enviar = data_string;
 
-    http.begin("http://192.168.1.11:3001/api/dato");        //Indicamos el destino
+    http.begin("http://192.168.1.11:3001/api/mediciones");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)

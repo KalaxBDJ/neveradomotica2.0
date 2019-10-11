@@ -38,14 +38,27 @@ function saveMeasure(req,res)
     })
 }
 
-function updateMeasure(id)
+function updateMeasure(req,res)
 {
+    let update = req.body
+    let datoId = req.params.datoId
 
+    Measure.findOneAndUpdate(datoId,update,(err,dato)=>{
+        if(err) return res.status(500).send(`Error al actualizar la medición : ${err}`)
+        if(!dato) return res.status(500).send(`No se encontro alguna medición con el id:${datoId}`)
+        res.status(200).send('La medición se Actualizo con exito')
+    })
 }
 
-function deleteMeasure(id)
+function deleteMeasure(req,res)
 {
-    
+    let datoId = req.params.datoId
+
+    Measure.findOneAndDelete(datoId,(err,dato)=>{
+        if(err) return res.status(500).send(`Error al borrar la medición : ${err}`)
+        if(!dato)return res.status(500).send(`La medición no se encontro`)
+        res.status(200).send('La medición Ha sido Borrada con Exito')
+    })
 }
 
 module.exports ={
