@@ -1,3 +1,5 @@
+#include <ArduinoJson.h>
+
 /**
    BasicHTTPClient.ino
 
@@ -9,13 +11,14 @@
 
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h>
 
 
-
-
-const char* ssid = "KALAX_RED";
-const char* password =  "164Px6/4";
+const char* ssid = "UNE_3D00";
+const char* password =  "2521410C8550";
 float temperatura = 0;
+String category="loquesea";
+
 void setup() {
   delay(10);
   Serial.begin(115200);
@@ -39,12 +42,15 @@ void loop() {
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
     temperatura = (3.3 * analogRead(0)*100)/1024;
-    HTTPClient http;
-    String datos_a_enviar = String(temperatura);
+    String data_string = "valor="+String(temperatura)+"&category="+category;
+    
 
-    http.begin("http://192.168.137.1:3001/api/temperature");        //Indicamos el destino
+    HTTPClient http;
+    String datos_a_enviar = data_string;
+
+    http.begin("http://192.168.1.11:3001/api/dato");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
-    //http.addHeader("Content-Type", "text/plain");
+    
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
     
     if(codigo_respuesta>0){
@@ -72,5 +78,5 @@ void loop() {
 
   }
 
-   delay(2000);
+   delay(10000);
 }
