@@ -2,11 +2,11 @@ const Measure = require('../models/measures')
 
 function getMeasure(req,res)
 {
-    let datoId = req.params.datoId
+    let dataId = req.params.dataId
 
-    Measure.findById(datoId,(err,dato)=>{
+    Measure.findById(dataId,(err,dato)=>{
         if(err) return res.status(500).send({message:`Error al realizar la petición : ${err}`})
-        if(!dato) return res.status(404).send({message:`El producto No existe`})
+        if(!dato) return res.status(404).send({message:`La medición no existe`})
 
         res.status(200).send({ dato })
 
@@ -41,23 +41,23 @@ function saveMeasure(req,res)
 function updateMeasure(req,res)
 {
     let update = req.body
-    let datoId = req.params.datoId
+    let dataId = req.params.dataId
 
-    Measure.findOneAndUpdate(datoId,update,(err,dato)=>{
+    Measure.findOneAndUpdate(dataId,update,(err,dato)=>{
         if(err) return res.status(500).send(`Error al actualizar la medición : ${err}`)
-        if(!dato) return res.status(500).send(`No se encontro alguna medición con el id:${datoId}`)
+        if(!dato) return res.status(500).send(`No se encontro alguna medición con el id:${dataId}`)
         res.status(200).send('La medición se Actualizo con exito')
     })
 }
 
 function deleteMeasure(req,res)
 {
-    let datoId = req.params.datoId
+    let dataId = req.params.dataId
 
-    Measure.findOneAndDelete(datoId,(err,dato)=>{
-        if(err) return res.status(500).send(`Error al borrar la medición : ${err}`)
-        if(!dato)return res.status(500).send(`La medición no se encontro`)
-        res.status(200).send('La medición Ha sido Borrada con Exito')
+    Measure.findByIdAndDelete(dataId,(err,dato)=>{
+        if(err) return res.status(500).send({message:`Error al borrar la medición ${err}`})
+        if(!dato) return res.status(500).send({message:`No se encontro la medición con id : ${dataId}`})
+        res.status(200).send({message:`La medición con id: ${dataId} , Ha sido borrada con exito`})
     })
 }
 
