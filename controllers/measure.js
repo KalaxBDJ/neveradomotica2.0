@@ -1,4 +1,5 @@
 const Measure = require('../models/measures')
+const faker = require('faker')
 
 function getMeasure(req,res)
 {
@@ -38,6 +39,19 @@ function saveMeasure(req,res)
     })
 }
 
+async function fakeMeasure(req,res)
+{
+    for(let i = 0;i<2;i++)
+    {
+        await Measure.create({
+            valor: faker.random.number(80),
+            category: 'temperatura'
+        })
+    }
+
+    res.send({message:'Se han Creado 2 Mediciones'})
+}
+
 function updateMeasure(req,res)
 {
     let update = req.body
@@ -66,7 +80,8 @@ module.exports ={
     getMeasures,
     updateMeasure,
     saveMeasure,
-    deleteMeasure
+    deleteMeasure,
+    fakeMeasure
 }
         
 
