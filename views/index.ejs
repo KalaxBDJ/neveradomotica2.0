@@ -1,0 +1,40 @@
+<% include partials/_header %>
+
+    
+    <div class="container">
+        <div class="row">
+
+        <!-- Tabla donde se Litan Los datos -->
+        <div class="col md-12">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N</th>
+                        <th>ID</th>
+                        <th>VALOR</th>
+                        <th>CATEGORIA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0;i < measures.length;i++){ %>
+                        
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= measures[i].id %></td>
+                            <td><%= measures[i].valor %></td>
+                            <td><%= measures[i].category %></td>
+                        </tr>
+                        
+                   <% } %>
+                </tbody>
+
+            </table>
+
+        </div>    
+
+        </div>
+    </div>
+
+    
+<% include partials/_footer %>
