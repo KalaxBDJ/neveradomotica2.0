@@ -1,3 +1,12 @@
+#include <ESP8266HTTPClient.h>
+
+#include <ESP8266HTTPClient.h>
+
+#include <ESP8266HTTPClient.h>
+
+#include <config.h>
+#include <HX711_ADC.h>
+
 #include <ArduinoJson.h>
 
 /**
@@ -12,16 +21,23 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
+#include <HX711_ADC.h>
 
 
-const char* ssid = "UNE_3D00";
-const char* password =  "2521410C8550";
+HX711_ADC LoadCell(4,0);
+long t;
+
+const char* ssid = "KALAX_RED";
+const char* password =  "KALAX_RED";
 float temperatura = 0;
-String category="temperatura";
+
+int contador = 0;
+
+String category[2]={"temperatura","peso"};
 
 void setup() {
   delay(10);
-  Serial.begin(115200);
+  Serial.begin(38400);
 
 
   WiFi.begin(ssid, password);
@@ -35,14 +51,61 @@ void setup() {
   Serial.print("Conectado con éxito, mi IP es: ");
   Serial.println(WiFi.localIP());
 
+  //Modulo de peso setup
+  Serial.println("Wait...");
+  LoadCell.begin();
+  long stabilisingtime = 2000; // tare preciscion can be improved by adding a few seconds of stabilising time
+  LoadCell.start(stabilisingtime);
+  LoadCell.setCalFactor(544.00); // user set calibration factor (float)
+  Serial.println("Startup + tare is complete");
+
 }
 
 void loop() {
 
+  String data_string;
+
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
+  if(contador==0)
+  {
+    String categoria=category[0];
     temperatura = (3.3 * analogRead(0)*100)/1024;
-    String data_string = "valor="+String(temperatura)+"&category="+category;
+    data_string = "valor="+String(temperatura)+"&category="+categoria;
+    contador++;
+  }
+  else
+  {
+    //update() should be called at least as often as HX711 sample rate; >10Hz@10SPS, >80Hz@80SPS
+    //longer delay in scetch will reduce effective sample rate (be carefull with delay() in loop)
+    LoadCell.update();
+
+    //get smoothed value from data set + current calibration factor
+    if (millis() > t + 250) 
+    {
+    float i = LoadCell.getData();
+    Serial.print("Load_cell output val: ");
+    Serial.println(i);
+    t = millis();
+    }
+
+    //receive from serial terminal
+    if (Serial.available() > 0) {
+    float i;
+    char inByte = Serial.read();
+    if (inByte == 't') LoadCell.tareNoDelay();
+    }
+
+    //check if last tare operation is complete
+    if (LoadCell.getTareStatus() == true) {
+    Serial.println("Tare complete");
+    digitalRead(6);
+    }
+
+   contador=0;
+  }
+  
+    
     
 
     HTTPClient http;

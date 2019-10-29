@@ -1,0 +1,47 @@
+<% include partials/_header %>
+<div class="container p-8">
+
+<!--TODO Crear el chart con los datos y en los xlabel la fecha de insercion del dato  -->
+
+<script>
+    const xlabels =[]
+    const datos = []
+</script>
+
+    
+<canvas id="myChart" width="10" height="5" ></canvas>
+<script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart =new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [xlabels],
+            datasets: [{
+                label: 'TEMPERATURA',
+                data: [datos],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)'
+                ]
+                ,
+                borderColor: [
+                    'rgba(54, 162, 235, 0.2)'
+                ]
+                ,
+                borderWidth: 1
+    
+            }]    
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+</div>
+<% include partials/_footer %>

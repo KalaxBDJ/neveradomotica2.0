@@ -30,12 +30,12 @@ function saveMeasure(req,res)
 
     let dato = new Measure()
     
-    dato.valor = req.body.valor
+    dato.value = req.body.value
     dato.category = req.body.category
 
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
-        res.status(200).send({dato:datoStored})
+        res.status(200).send(datoStored)
     })
 }
 
