@@ -27,8 +27,8 @@
 HX711_ADC LoadCell(4,0);
 long t;
 
-const char* ssid = "KALAX_RED";
-const char* password =  "KALAX_RED";
+const char* ssid = "UNE_3D00";
+const char* password =  "2521410C8550";
 float temperatura = 0;
 
 int contador = 0;
@@ -71,7 +71,7 @@ void loop() {
   {
     String categoria=category[0];
     temperatura = (3.3 * analogRead(0)*100)/1024;
-    data_string = "valor="+String(temperatura)+"&category="+categoria;
+    data_string = "value="+String(temperatura)+"&category="+categoria;
     contador++;
   }
   else
@@ -86,22 +86,12 @@ void loop() {
     float i = LoadCell.getData();
     Serial.print("Load_cell output val: ");
     Serial.println(i);
+    String categoria=category[1];
+    data_string = "value="+String(i)+"&category="+categoria;
     t = millis();
     }
 
-    //receive from serial terminal
-    if (Serial.available() > 0) {
-    float i;
-    char inByte = Serial.read();
-    if (inByte == 't') LoadCell.tareNoDelay();
-    }
-
-    //check if last tare operation is complete
-    if (LoadCell.getTareStatus() == true) {
-    Serial.println("Tare complete");
-    digitalRead(6);
-    }
-
+  
    contador=0;
   }
   
@@ -111,7 +101,7 @@ void loop() {
     HTTPClient http;
     String datos_a_enviar = data_string;
 
-    http.begin("http://192.168.1.11:3001/api/mediciones");        //Indicamos el destino
+    http.begin("http://192.168.1.4:3001/mediciones");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)

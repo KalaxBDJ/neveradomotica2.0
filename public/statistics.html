@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>API Nevera Domotica Table</title>
+    <title>API Nevera Domotica Statistics</title>
     <!-- Boostrap 4 CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      
 
 </head>
-<body>
+<body onload="">
 
     <script
     src="http://code.jquery.com/jquery-3.4.1.min.js"
@@ -35,7 +35,7 @@
               <a class="nav-link" href="table.html">Table</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="statistics.html">statistics</a>
+              <a class="nav-link" href="statistics.html">Statistics</a>
             </li>
           </ul>
         </div>
@@ -45,36 +45,13 @@
       <div class="container p-4">
         <div class="row">
             <div class="col md-4 mx-auto">
-                <div class="card text-center w-auto">
+                <div class="card text-center">
                     <div class="card-body">
-                        <a href="http://localhost:3001/table" class="btn btn-primary">Registros de temperatura</a>
+                        <a href="table.html" class="btn btn-primary">Cargar Tabla</a>
                     </div>
-                    
                 </div>
             </div>
-            <div class="col md-4 mx-auto">
-              <div class="card text-center w-auto">
-                  <div class="card-body">
-                      <a href="http://localhost:3001/table" class="btn btn-primary">Registros de peso</a>
-                  </div>
-                  
-              </div>
-          </div>  
         </div>
-    </div>
-
-    <div class="container p-4">
-    <table class="table table-bordered table-hover  ">
-      <thead>
-          <tr>
-              <th>N</th>
-              <th>VALUE</th>
-              <th>CATEGORY</th>
-              <th>ID</th>
-          </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
     </div>
 
 </body>

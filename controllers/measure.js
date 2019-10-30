@@ -19,7 +19,7 @@ function getMeasures(req,res)
     Measure.find({},(err,datos)=>{
         if(err) return res.status(500).send({message:`Error al realizar la petición : ${err}`})
         if(!datos) return res.status(404).send({message:`No hay datos`})
-        res.status(200).send({ datos })
+        res.json(datos)
     })
 }
 

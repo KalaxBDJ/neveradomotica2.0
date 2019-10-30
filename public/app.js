@@ -1,19 +1,19 @@
 $(function()
 {
-    $('#getMeasures').on('click',function(){
         $.ajax(
         {
             url:'/mediciones',
             type:'GET',
-            success: function(measures)
+            success: function(datos)
             {
-                console.log(measures)
-
-                measures[0].forEach(dato=>{
-                    console.log('Hola Mundo')
+                console.log(datos)
+                datos.forEach(dato=>{
+                    console.log(dato.created_at )
                 })
+                
+                
                 
             }   
         })
-    })
+    
 })
