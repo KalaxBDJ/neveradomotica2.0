@@ -47,7 +47,7 @@
             <div class="col md-4 mx-auto">
                 <div class="card text-center w-auto">
                     <div class="card-body">
-                        <a href="http://localhost:3001/table" class="btn btn-primary">Registros de temperatura</a>
+                        <a class="btn btn-primary" id="getTemperatura">Registros de temperatura</a>
                     </div>
                     
                 </div>
@@ -55,7 +55,7 @@
             <div class="col md-4 mx-auto">
               <div class="card text-center w-auto">
                   <div class="card-body">
-                      <a href="http://localhost:3001/table" class="btn btn-primary">Registros de peso</a>
+                      <a class="btn btn-primary" id="getPeso">Registros de peso</a>
                   </div>
                   
               </div>
@@ -63,19 +63,22 @@
         </div>
     </div>
 
-    <div class="container p-4">
-    <table class="table table-bordered table-hover  ">
+    
+    <div class="container">
+    <table class="table table-bordered table-hover ">
       <thead>
           <tr>
-              <th>N</th>
+              <th>FECHA</th>
               <th>VALUE</th>
               <th>CATEGORY</th>
               <th>ID</th>
+              <th>ACTION</th>
           </tr>
       </thead>
       <tbody></tbody>
     </table>
-    </div>
+  </div>
+    
 
 </body>
 </html>    
