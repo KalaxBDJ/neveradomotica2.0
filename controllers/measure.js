@@ -1,5 +1,7 @@
 const Measure = require('../models/measures')
 const faker = require('faker')
+const config = require('../server/config')
+const client = require('twilio')(config.accountSid,config.authToken)
 
 function getMeasure(req,res)
 {
@@ -33,8 +35,21 @@ function saveMeasure(req,res)
     dato.value = req.body.value
     dato.category = req.body.category
 
+
+
+
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
+        if(datoStored.value>35)
+        {
+            client.calls
+            .create({
+                url: 'https://8iu6y75trw.000webhostapp.com/voice.xml',
+                to: config.toNumber,
+                from: config.fromNumber
+            })
+            .then(call => console.log(call.sid));
+        }
         res.status(200).send(datoStored)
     })
 }
