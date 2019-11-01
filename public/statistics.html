@@ -10,8 +10,7 @@
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="css/css.css">
      <script data-require="chart.js@0.2.0" data-semver="0.2.0" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>
-    
-</head>
+     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet"></head>
 <body onload="">
 
     <script
@@ -47,16 +46,22 @@
       
 
         <div class="card mx-auto" style="width: 70rem;">
+          <div class="card-header">
+            <h5 class="card-title text-justify">Nevera Domotica API Temperature Statistics</h5>
+          </div>
           <div class="card-body">
-            <h5 class="card-title text-justify">Nevera Domotica API Statistics</h5>
+            
             <div style="width:100%">  
              
                 <div>
                   <canvas id="canvas" height="400" width="1050"></canvas>
                 </div>
               </div>
-            <p class="card-text">Estos son los ultimos cambios de temperatura de tu nevera</p>
           </div>
+          <div class="card-footer">
+            <p class="card-text">These are the latest temperature changes of your fridge</p>
+          </div>
+          
         </div>
     
         
