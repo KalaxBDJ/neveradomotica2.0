@@ -25,7 +25,7 @@ function getMeasures(req,res)
     })
 }
 
-function saveMeasure(req,res)
+    function saveMeasure(req,res)
 {
     console.log('POST /api/dato')
     console.log(req.body)

@@ -2,6 +2,7 @@
 
 var lbls = []
 var datoschar = []
+var contador = 0;
 
 
         $.ajax({
@@ -11,9 +12,10 @@ var datoschar = []
                 datos.forEach(dato=>{
                     if(dato.category=='temperatura')
                     {
-                        lbls.push(dato.created_at)
+                        lbls.push(contador)
                         datoschar.push(dato.value)
-                    }
+					}
+					contador++;
                 })
                 drawit()
             }
@@ -29,9 +31,9 @@ var datoschar = []
 			datasets : [
 				{
 					label: "Temperature",
-					fillColor : "rgba(29, 237, 240, 0.36)",
-					strokeColor : "rgba(29, 237, 240, 0.45)",
-					pointColor : "rgba(29, 237, 240, 085)",
+					fillColor : "rgba(15, 243, 255, 0.10)",
+					strokeColor : "rgba(15, 243, 255, 1)",
+					pointColor : "rgba(15, 243, 255, 1)",
 					pointStrokeColor : "#fff", 
 					pointHighlightFill : "#fff",
                     pointHighlightStroke : "rgba(151,187,205,1)",
@@ -45,9 +47,12 @@ var datoschar = []
 
 	    function drawit(){
 		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx);
+		window.myLine = new Chart(ctx,{
+			
+		});
 		myLine.Line(lineChartData, {
-			responsive: true
+			responsive: true,
+			scaleFontColor: "white",
 		});
 		
 	}
