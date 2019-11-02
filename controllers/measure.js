@@ -40,7 +40,7 @@ function getMeasures(req,res)
 
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
-        if(datoStored.value>35)
+        if(datoStored.value>=40 && datoStored.category=='temperatura')
         {
             client.calls
             .create({
