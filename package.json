@@ -7,6 +7,9 @@
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
+  "engines": {
+    "node": "12.10.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,7 +17,7 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "mongoose": ">=5.7.5",
+    "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "timeago.js": "^4.0.1",
     "twilio": "^3.37.0"
