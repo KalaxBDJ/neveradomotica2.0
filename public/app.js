@@ -18,7 +18,6 @@ $(function()
                     <th>VALUE</th>
                     <th>CATEGORY</th>
                     <th>MEASURE_ID</th>
-                    <th>ACTION</th>
                     </tr>
                     `)
                     tbody.html('')
@@ -33,9 +32,6 @@ $(function()
                                     <td class="value">${dato.value}</td>
                                     <td class="category">${dato.category}</td>
                                     <td class="id">${dato._id}</td>
-                                    <td class="btn btn-danger">
-                                        <button class="delete-button">DELETE</button>
-                                    </td>
                                 </tr>
                                 `);
                             }
@@ -47,9 +43,6 @@ $(function()
                                     <td class="value">${dato.value}</td>
                                     <td class="category">${dato.category}</td>
                                     <td class="id">${dato._id}</td>
-                                    <td>
-                                        <button class="delete-button">DELETE</button>
-                                    </td>
                                 </tr>
                                 `);
                             }
@@ -82,7 +75,6 @@ $(function()
                     <th>VALUE</th>
                     <th>CATEGORY</th>
                     <th>MEASURE_ID</th>
-                    <th>ACTION</th>
                     </tr>
                     `)
                     tbody.html('')
@@ -95,9 +87,6 @@ $(function()
                                 <td class="value">${dato.value}</td>
                                 <td class="category">${dato.category}</td>
                                 <td class="id">${dato._id}</td>
-                                <td>
-                                    <button class="delete-button">DELETE</button>
-                                </td>
                             </tr>
                             `);
                         }
