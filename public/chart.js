@@ -13,9 +13,10 @@ var contador = 0;
                     if(dato.category=='temperatura')
                     {
                         lbls.push(contador)
-                        datoschar.push(dato.value)
+						datoschar.push(dato.value)
+						contador++;
 					}
-					contador++;
+					
                 })
                 drawit()
             }
