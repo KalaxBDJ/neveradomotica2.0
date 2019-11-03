@@ -70,11 +70,16 @@ void loop() {
   if(contador==0)
   {
     String categoria=category[0];
-    temperatura = (3.3 * analogRead(0)*100)/1024;
+    int rawvoltage= analogRead(0);
+    float millivolts= (rawvoltage/1024.0) * 3300;
+    float celsius= millivolts/10;
+    
+    
+    temperatura = celsius;
     data_string = "value="+String(temperatura)+"&category="+categoria;
-    contador++;
+    
   }
-  else
+  else if(contador==1)
   {
     //update() should be called at least as often as HX711 sample rate; >10Hz@10SPS, >80Hz@80SPS
     //longer delay in scetch will reduce effective sample rate (be carefull with delay() in loop)
@@ -101,7 +106,7 @@ void loop() {
     HTTPClient http;
     String datos_a_enviar = data_string;
 
-    http.begin("http://192.168.1.4:3001/mediciones");        //Indicamos el destino
+    http.begin("http://neveradomotica.herokuapp.com/mediciones");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)

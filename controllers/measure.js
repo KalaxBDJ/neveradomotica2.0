@@ -1,7 +1,7 @@
 const Measure = require('../models/measures')
 const faker = require('faker')
 const config = require('../server/config')
-const client = require('twilio')(config.accountSid,config.authToken)
+const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
 
 function getMeasure(req,res)
 {

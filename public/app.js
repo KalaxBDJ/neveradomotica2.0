@@ -28,7 +28,7 @@ $(function()
                             {
                                 tbody.append(`
                                 <tr class="bg-danger">
-                                    <td class="created_at">${dato.created_at   }</td>
+                                    <td class="created_at">${dato.created_at}</td>
                                     <td class="value">${dato.value} °C</td>
                                     <td class="category">${dato.category}</td>
                                     <td class="id">${dato._id}</td>
@@ -39,7 +39,7 @@ $(function()
                             {
                                 tbody.append(`
                                 <tr>
-                                    <td class="created_at">${dato.created_at   }</td>
+                                    <td class="created_at">${dato.created_at}</td>
                                     <td class="value">${dato.value} °C</td>
                                     <td class="category">${dato.category}</td>
                                     <td class="id">${dato._id}</td>
