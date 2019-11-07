@@ -5,12 +5,13 @@ var datoschar = []
 var contador = 0;
 
 setInterval(function() {
+	datoschar = [];
+	lbls=[];
 	$.ajax({
 		url: '/mediciones',
 		type: 'GET',
 		success : (datos)=>{
-			datoschar = [];
-			lbls=[];
+			
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
@@ -23,7 +24,7 @@ setInterval(function() {
 			drawit()
 		}
 	})
-}, 1000);
+}, 2000);
    
     
     
