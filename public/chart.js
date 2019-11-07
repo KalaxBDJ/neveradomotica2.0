@@ -4,9 +4,7 @@ var lbls = []
 var datoschar = []
 var contador = 0;
 
-setInterval(function() {
-	datoschar = [];
-	lbls=[];
+
 	$.ajax({
 		url: '/mediciones',
 		type: 'GET',
@@ -23,9 +21,7 @@ setInterval(function() {
 			})
 			drawit()
 		}
-	})
-}, 2000);
-   
+	})   
     
     
 
