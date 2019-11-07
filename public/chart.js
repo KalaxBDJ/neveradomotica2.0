@@ -9,6 +9,8 @@ setInterval(function() {
 		url: '/mediciones',
 		type: 'GET',
 		success : (datos)=>{
+			datoschar = [];
+			lbls=[];
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
