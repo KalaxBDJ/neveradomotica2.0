@@ -4,23 +4,24 @@ var lbls = []
 var datoschar = []
 var contador = 0;
 
-
-        $.ajax({
-            url: '/mediciones',
-            type: 'GET',
-            success : (datos)=>{
-                datos.forEach(dato=>{
-                    if(dato.category=='temperatura')
-                    {
-                        lbls.push(contador)
-						datoschar.push(dato.value)
-						contador++;
-					}
-					
-                })
-                drawit()
-            }
-        })
+setInterval(function() {
+	$.ajax({
+		url: '/mediciones',
+		type: 'GET',
+		success : (datos)=>{
+			datos.forEach(dato=>{
+				if(dato.category=='temperatura')
+				{
+					lbls.push(contador)
+					datoschar.push(dato.value)
+					contador++;
+				}
+				
+			})
+			drawit()
+		}
+	})
+}, 1000);
    
     
     
