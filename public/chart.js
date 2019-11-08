@@ -4,7 +4,6 @@ var lbls = []
 var datoschar = []
 var contador = 0;
 
-
 	$.ajax({
 		url: '/mediciones',
 		type: 'GET',
@@ -21,12 +20,8 @@ var contador = 0;
 			})
 			drawit()
 		}
-	})   
-    
-    
+	})
 
-
-  
 		var lineChartData = {
 			labels : lbls,
 			datasets : [
