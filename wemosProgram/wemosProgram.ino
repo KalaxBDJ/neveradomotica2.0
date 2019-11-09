@@ -77,6 +77,7 @@ void loop() {
     
     temperatura = celsius;
     data_string = "value="+String(temperatura)+"&category="+categoria;
+    contador++;
     
   }
   else if(contador==1)
@@ -136,5 +137,5 @@ void loop() {
 
   }
 
-   delay(10000);
+   delay(5000);
 }

@@ -43,7 +43,7 @@ function getMeasures(req,res)
             res.status(200).send(datoStored)
         })
     }
-    else
+    else if(dato.category=='temperatura')
     {    
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
