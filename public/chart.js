@@ -11,10 +11,11 @@ var contador = 0;
 		type: 'GET',
 		success : (datos,ago)=>{
 			
+			console.log(ago)
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
-					lbls.push(ago[contador])
+					lbls.push(contador)
 					datoschar.push(dato.value)
 					contador++;
 				}
