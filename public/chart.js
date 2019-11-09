@@ -9,9 +9,9 @@ var contador = 0;
 	$.ajax({
 		url: '/mediciones',
 		type: 'GET',
-		success : (datos,ago)=>{
+		success : (datos)=>{
 			
-			console.log(ago)
+			
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
