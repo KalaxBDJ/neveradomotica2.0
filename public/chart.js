@@ -1,10 +1,6 @@
 // Code goes here
  
-const {format} = require('timeago.js')
 
-function timeago(timestamp){
-	return format(timestamp)
-}
 
 var lbls = []
 var datoschar = []
@@ -13,15 +9,14 @@ var contador = 0;
 	$.ajax({
 		url: '/mediciones',
 		type: 'GET',
-		success : (datos)=>{
+		success : (datos,ago)=>{
 			
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
-					lbls.push(contador)
+					lbls.push(ago[contador])
 					datoschar.push(dato.value)
 					contador++;
-					console.log(timeago(dato.created_at))
 				}
 				
 			})

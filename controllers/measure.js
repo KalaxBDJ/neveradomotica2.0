@@ -2,6 +2,11 @@ const Measure = require('../models/measures')
 const faker = require('faker')
 const config = require('../server/config')
 const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
+const{format}= require('timeago.js')
+
+function timeago(timestamp){
+    return format(timestamp)
+}
 
 function getMeasure(req,res)
 {
@@ -16,12 +21,16 @@ function getMeasure(req,res)
     })
 }
 
-function getMeasures(req,res)
+async function getMeasures(req,res)
 {
-    Measure.find({},(err,datos)=>{
+    const ago = []
+    await Measure.find({},(err,datos)=>{
         if(err) return res.status(500).send({message:`Error al realizar la petición : ${err}`})
         if(!datos) return res.status(404).send({message:`No hay datos`})
-        res.json(datos)
+        datos.forEach(dato=>{
+            ago.push(timeago(dato.created_at))
+        })
+        res.json(datos,ago)
     })
 }
 
