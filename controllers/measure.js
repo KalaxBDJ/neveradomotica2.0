@@ -1,12 +1,8 @@
 const Measure = require('../models/measures')
-const faker = require('faker')
 const config = require('../server/config')
 const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
 
 
-function timeago(timestamp){
-    return format(timestamp)
-}
 
 function getMeasure(req,res)
 {
@@ -33,17 +29,22 @@ function getMeasures(req,res)
 
     function saveMeasure(req,res)
 {
-    console.log('POST /api/dato')
-    console.log(req.body)
 
     let dato = new Measure()
     
     dato.value = req.body.value
     dato.category = req.body.category
 
-
-
-
+    if(dato.category=='peso' && dato.value>10)
+    {
+        dato.value = dato.value / 1000
+        dato.save((err,datoStored)=>{
+            if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
+            res.status(200).send(datoStored)
+        })
+    }
+    else
+    {    
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
         if(datoStored.value>=40 && datoStored.category=='temperatura')
@@ -58,20 +59,9 @@ function getMeasures(req,res)
         }
         res.status(200).send(datoStored)
     })
-}
-
-async function fakeMeasure(req,res)
-{
-    for(let i = 0;i<2;i++)
-    {
-        await Measure.create({
-            valor: faker.random.number(80),
-            category: 'temperatura'
-        })
     }
-
-    res.send({message:'Se han Creado 2 Mediciones'})
 }
+
 
 function updateMeasure(req,res)
 {
@@ -101,8 +91,7 @@ module.exports ={
     getMeasures,
     updateMeasure,
     saveMeasure,
-    deleteMeasure,
-    fakeMeasure
+    deleteMeasure
 }
         
 
