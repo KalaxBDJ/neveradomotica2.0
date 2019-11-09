@@ -78,6 +78,7 @@ void loop() {
     temperatura = celsius;
     data_string = "value="+String(temperatura)+"&category="+categoria;
     contador++;
+    LoadCell.update();
     
   }
   else if(contador==1)
@@ -137,5 +138,5 @@ void loop() {
 
   }
 
-   delay(5000);
+   delay(2000);
 }
