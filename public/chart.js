@@ -1,4 +1,10 @@
 // Code goes here
+ 
+const {format} = require('timeago.js')
+
+function timeago(timestamp){
+	return format(timestamp)
+}
 
 var lbls = []
 var datoschar = []
@@ -12,7 +18,7 @@ var contador = 0;
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
-					lbls.push(contador)
+					lbls.push(timeago(dato.created_at))
 					datoschar.push(dato.value)
 					contador++;
 				}
