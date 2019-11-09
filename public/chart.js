@@ -18,9 +18,10 @@ var contador = 0;
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
-					lbls.push(timeago(dato.created_at))
+					lbls.push(contador)
 					datoschar.push(dato.value)
 					contador++;
+					console.log(timeago(dato.created_at))
 				}
 				
 			})
