@@ -12,7 +12,7 @@ var contador = 0;
 			datos.forEach(dato=>{
 				if(dato.category=='temperatura')
 				{
-					lbls.push(dato.created_at)
+					lbls.push(contador)
 					datoschar.push(dato.value)
 					contador++;
 				}
