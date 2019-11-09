@@ -37,7 +37,7 @@ function getMeasures(req,res)
 
     if(dato.category=='peso' && dato.value>10)
     {
-        dato.value = dato.value / 1000
+        dato.value = Math.round(dato.value / 1000) 
         dato.save((err,datoStored)=>{
             if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
             res.status(200).send(datoStored)
