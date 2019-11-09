@@ -46,16 +46,7 @@ function getMeasures(req,res)
     {    
     dato.save((err,datoStored)=>{
         if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
-        if(datoStored.value>=40 && datoStored.category=='temperatura')
-        {
-            client.calls
-            .create({
-                url: 'https://8iu6y75trw.000webhostapp.com/voice.xml',
-                to: config.toNumber,
-                from: config.fromNumber
-            })
-            .then(call => console.log(call.sid));
-        }
+        //aqui va lo de twilio
         res.status(200).send(datoStored)
     })
     }
