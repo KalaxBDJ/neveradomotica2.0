@@ -56,7 +56,7 @@ void setup() {
   LoadCell.begin();
   long stabilisingtime = 2000; // tare preciscion can be improved by adding a few seconds of stabilising time
   LoadCell.start(stabilisingtime);
-  LoadCell.setCalFactor(422.00); // user set calibration factor (float)
+  LoadCell.setCalFactor(525.00); // user set calibration factor (float)
   Serial.println("Startup + tare is complete");
 
 }
@@ -67,7 +67,7 @@ void loop() {
 
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
-  if(contador==0)
+  if(contador==10)
   {
     String categoria=category[0];
     int rawvoltage= analogRead(0);
@@ -79,9 +79,10 @@ void loop() {
     data_string = "value="+String(temperatura)+"&category="+categoria;
     contador++;
     LoadCell.update();
-    
+    contador=0;
+   
   }
-  else if(contador==1)
+  else
   {
     //update() should be called at least as often as HX711 sample rate; >10Hz@10SPS, >80Hz@80SPS
     //longer delay in scetch will reduce effective sample rate (be carefull with delay() in loop)
@@ -94,12 +95,20 @@ void loop() {
     Serial.print("Load_cell output val: ");
     Serial.println(i);
     String categoria=category[1];
-    data_string = "value="+String(i)+"&category="+categoria;
+    
     t = millis();
+    if(i<5)
+     {
+     data_string = "value=0&category=peso";
+    }
+    else
+    {
+      data_string = "value="+String(i)+"&category="+categoria;
+    }
     }
 
   
-   contador=0;
+   contador++;
   }
   
     
@@ -108,7 +117,7 @@ void loop() {
     HTTPClient http;
     String datos_a_enviar = data_string;
 
-    http.begin("http://neveradomotica.herokuapp.com/mediciones");        //Indicamos el destino
+    http.begin("http://192.168.1.4:3001/mediciones");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
@@ -138,5 +147,5 @@ void loop() {
 
   }
 
-   delay(2000);
+   delay(500);
 }

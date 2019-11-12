@@ -10,5 +10,6 @@ api.get('/mediciones/:dataId',measureCtrl.getMeasure)
 api.post('/mediciones',measureCtrl.saveMeasure)
 api.put('/mediciones/:dataId',measureCtrl.updateMeasure)
 api.delete('/mediciones/:dataId',measureCtrl.deleteMeasure)
+api.get('/pesos',measureCtrl.getPesos)
 
 module.exports = api

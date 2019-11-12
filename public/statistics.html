@@ -23,7 +23,7 @@
     <script src="chart.js"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <img src="NDAPP.png" alt="80" width="80">
+        <img src="fridge.png" class="rounded-circle" alt="80" width="80">
         <a class="navbar-brand" href="index.html">&nbsp;&nbsp;Nevera Domotica APP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,10 @@
               <a class="nav-link" href="table.html">Table</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="statistics.html">Statistics</a>
+              <a class="nav-link" href="statistics.html">Temperature</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="peso.html">Weight</a>
             </li>
           </ul>
         </div>
@@ -54,10 +57,20 @@
             
             <div style="width:100%">  
              
+              <h3>Temperature in °C</h3>
                 <div>
                   <canvas id="canvas" height="400" width="1050"></canvas>
                 </div>
+
+            </div>
+
+            <div class="row">
+              <div class="contenedor mx-auto">
+                <h4>Measure Date</h2>
               </div>
+            </div>
+            
+            
           </div>
           <div class="card-footer">
             <p class="card-text">These are the latest temperature changes of your fridge</p>

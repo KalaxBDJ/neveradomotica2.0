@@ -1,6 +1,5 @@
 const Measure = require('../models/measures')
-const config = require('../server/config')
-const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
+//const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
 
 
 
@@ -27,7 +26,7 @@ function getMeasures(req,res)
     })
 }
 
-    function saveMeasure(req,res)
+function saveMeasure(req,res)
 {
 
     let dato = new Measure()
@@ -35,7 +34,7 @@ function getMeasures(req,res)
     dato.value = req.body.value
     dato.category = req.body.category
 
-    if(dato.category=='peso' && dato.value>10)
+    if(dato.category=='peso' && dato.value>=0)
     {
         dato.save((err,datoStored)=>{
             if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
@@ -76,12 +75,21 @@ function deleteMeasure(req,res)
     })
 }
 
+async function getPesos(req,res)
+{
+    await Measure.find({"category":"peso"},(err,records)=>{
+        if(err) return console.log(`Ups ha Ocurrido un error`)
+        res.send(records)
+    })
+}
+
 module.exports ={
     getMeasure,
     getMeasures,
     updateMeasure,
     saveMeasure,
-    deleteMeasure
+    deleteMeasure,
+    getPesos
 }
         
 

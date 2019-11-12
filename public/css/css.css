@@ -20,4 +20,15 @@ body
     width: 60%;
   }
 
+  .contenedor1
+  {
+    padding-right: 40px;
+    padding-top: 40px;
+    float: right;
+  }
+
+  .contenedor2
+  {
+    float: left;
+  }
   

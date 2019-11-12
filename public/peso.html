@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>API Nevera Domotica Table</title>
+    <title>API Nevera Domotica Home</title>
     <!-- Boostrap 4 CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="css/css.css">
      <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
-     
 </head>
 <body>
-  
     <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous">
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
     </script>
-    
 
-    <script src="app.js"></script>
+    <script src="peso.js"></script>
+
+    
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <img src="fridge.png" class="rounded-circle" alt="80" width="80">
@@ -32,55 +31,53 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto p-2">
             <li class="nav-item active">
+                
               <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              
             </li>
             <li class="nav-item">
               <a class="nav-link" href="table.html">Table</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="statistics.html">Temperature</a>
+                <a class="nav-link" href="statistics.html">Temperature</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="peso.html">Weight</a>
+                <a class="nav-link" href="peso.html">Weight</a>
             </li>
           </ul>
         </div>
       </nav>
 
+      
 
-      <div class="container p-4">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card text-white bg-dark mx-auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Temperature</h5>
-                    <p class="card-text">Click on the button below to see all temperature records catched by your fridge.</p>
-                    <a class="btn btn-primary" id="getTemperatura">Go!</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card text-white bg-dark mx-auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Weight</h5>
-                    <p class="card-text">Click on the button below to see all weight records catched by your fridge.</p>
-                    <a class="btn btn-primary" id="getPeso">Go!</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-    </div>
-
-    
-    <div class="container p-4">
-    <table class="table table-bordered table-hover table-dark table-borderless">
-      <thead>
+      <div class="card text-white bg-dark mb-3 mx-auto" style="width: 40rem;">
+        <div class="card-header">
+          <h5 class="card-title text-justify">ND APP Weight Service</h5>
+        </div>
+        <div class="card-body">
           
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-    
-
+          <div style="width:100%">  
+         
+          <div class="contenedor2">
+          <img src="fridge.png">
+          </div>
+          
+          <div class="contenedor1">
+          <h5>Fridge Actuall Weight</h5>
+          <div class="card text-dark" style="width: 12.5rem;">
+            <h1 id="text" class="mx-auto"></h1>
+          </div>
+          </div>
+          
+            
+              
+          </div>
+        </div>
+        <div class="card-footer">
+          <p class="card-text">This is the actuall weight of your fridge</p>
+        </div>
+        
+      </div>
+           
 </body>
-</html>    
+</html>     
