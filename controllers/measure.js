@@ -2,7 +2,7 @@ const Measure = require('../models/measures')
 const config = require('../server/config')
 const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
 
-
+var contmsg=0;
 
 function getMeasure(req,res)
 {
@@ -42,11 +42,17 @@ function saveMeasure(req,res)
             res.status(200).send(datoStored)
         })
 
-        if(dato.value==0)
+        if(dato.value>0)
+        {
+            contmsg=0;
+        }
+
+        if(dato.value==0 && contmsg==0)
         {
             client.messages
             .create({body: 'Debes ir de compras, No tienes comida en tu nevera.', from:config.fromNumber, to:config.toNumber})
             .then(message => console.log(message.sid));
+            contmsg++;
         }
     }
     else if(dato.category=='temperatura')
