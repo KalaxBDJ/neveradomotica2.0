@@ -49,9 +49,13 @@ function saveMeasure(req,res)
 
         if(dato.value==0 && contmsg==0)
         {
-            client.messages
-            .create({body: 'Debes ir de compras, No tienes comida en tu nevera.', from:config.fromNumber, to:config.toNumber})
-            .then(message => console.log(message.sid));
+            client.calls
+            .create({
+                url: 'https://8iu6y75trw.000webhostapp.com/voice.xml',
+                to: config.toNumber,
+                from: config.fromNumber
+            })
+            .then(call => console.log(call.sid));
             contmsg++;
         }
     }
