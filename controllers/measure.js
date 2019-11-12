@@ -1,5 +1,6 @@
 const Measure = require('../models/measures')
-//const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
+const config = require('../server/config')
+const client = require('twilio')(process.env.ACCOUNT_SID,process.env.AUTH_TOKEN)
 
 
 
@@ -40,6 +41,13 @@ function saveMeasure(req,res)
             if(err) return res.status(500).send({message:`Error al salvar en la base de datos :${err}`})
             res.status(200).send(datoStored)
         })
+
+        if(dato.value==0)
+        {
+            client.messages
+            .create({body: 'Debes ir de compras, No tienes comida en tu nevera.', from:config.fromNumber, to:config.toNumber})
+            .then(message => console.log(message.sid));
+        }
     }
     else if(dato.category=='temperatura')
     {    
