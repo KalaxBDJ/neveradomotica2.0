@@ -95,7 +95,7 @@ function deleteMeasure(req,res)
 
 async function getPesos(req,res)
 {
-    await Measure.find({"category":"peso"},(err,records)=>{
+    await Measure.find({"category":"temperatura"},(err,records)=>{
         if(err) return console.log(`Ups ha Ocurrido un error`)
         res.send(records)
     })

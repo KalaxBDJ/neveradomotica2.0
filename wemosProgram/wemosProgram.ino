@@ -27,8 +27,8 @@
 HX711_ADC LoadCell(4,0);
 long t;
 
-const char* ssid = "UNE_3D00";
-const char* password =  "2521410C8550";
+const char* ssid = "Unaula-Todos";
+const char* password =  "5112199000";
 float temperatura = 0;
 
 int contador = 0;
@@ -56,7 +56,7 @@ void setup() {
   LoadCell.begin();
   long stabilisingtime = 2000; // tare preciscion can be improved by adding a few seconds of stabilising time
   LoadCell.start(stabilisingtime);
-  LoadCell.setCalFactor(525.00); // user set calibration factor (float)
+  LoadCell.setCalFactor(322.00); // user set calibration factor (float)
   Serial.println("Startup + tare is complete");
 
 }
@@ -74,8 +74,8 @@ void loop() {
     float millivolts= (rawvoltage/1024.0) * 3300;
     float celsius= millivolts/10;
     
-    
-    temperatura = celsius;
+    float randNumber = random(0,2);
+    temperatura = celsius+randNumber;
     data_string = "value="+String(temperatura)+"&category="+categoria;
     contador++;
     LoadCell.update();
@@ -97,8 +97,8 @@ void loop() {
     String categoria=category[1];
     
     t = millis();
-    if(i<5)
-     {
+    if(i<10)
+    {
      data_string = "value=0&category=peso";
     }
     else
@@ -117,7 +117,7 @@ void loop() {
     HTTPClient http;
     String datos_a_enviar = data_string;
 
-    http.begin("http://192.168.1.4:3001/mediciones");        //Indicamos el destino
+    http.begin("http://neveradomotica.herokuapp.com/mediciones");        //Indicamos el destino
     http.addHeader("Content-Type", "application/x-www-form-urlencoded"); //Preparamos el header text/plain si solo vamos a enviar texto plano sin un paradigma llave:valor.
     
     int codigo_respuesta = http.POST(datos_a_enviar);   //Enviamos el post pasándole, los datos que queremos enviar. (esta función nos devuelve un código que guardamos en un int)
@@ -147,5 +147,5 @@ void loop() {
 
   }
 
-   delay(500);
+   delay(50);
 }
